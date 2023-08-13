@@ -1,4 +1,4 @@
-import { ApplicationCommandOptionType, BaseInteraction, CacheType, CommandInteraction, PermissionFlagsBits } from "discord.js";
+import { CommandInteraction } from "discord.js";
 import { Command } from "../../structures/Command";
 
 export default class PingCommand extends Command {

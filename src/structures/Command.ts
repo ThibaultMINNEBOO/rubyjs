@@ -1,4 +1,4 @@
-import { ApplicationCommandData, BaseInteraction, CommandInteraction } from "discord.js";
+import { ApplicationCommandData, CommandInteraction } from "discord.js";
 
 export abstract class Command {
     private _metadata: ApplicationCommandData;
