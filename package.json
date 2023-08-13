@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc --build && node -r dotenv/config dist/index.js"
+    "dev": "rm -rf dist/ && tsc --build && node -r dotenv/config dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -12,8 +12,9 @@
   "dependencies": {
     "discord.js": "^14.12.1",
     "dotenv": "^16.3.1",
-    "sequelize": "^6.32.1",
-    "sqlite3": "^5.1.6"
+    "mariadb": "^3.2.0",
+    "mysql2": "^3.6.0",
+    "sequelize": "^6.32.1"
   },
   "devDependencies": {
     "@types/node": "^20.4.9",
