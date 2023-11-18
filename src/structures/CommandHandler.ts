@@ -1,5 +1,5 @@
 import { readdirSync } from "fs";
-import { sep } from "path";
+import { join } from "path";
 import { ClientCommands } from "../../types/Client";
 import { Command } from "./Command";
 
@@ -8,9 +8,9 @@ export class CommandHandler {
         const cmds: ClientCommands = [];
 
         readdirSync(commandsPath).map(async (category: string) => {
-            const commands = readdirSync(`${commandsPath}${sep}${category}${sep}`).filter((files: string) => files.endsWith('.js'));
+            const commands = readdirSync(join(commandsPath, category)).filter((files: string) => files.endsWith('.js'));
             for (const file of commands) {
-                const command: Command = new ((await import(`${commandsPath}${sep}${category}${sep}${file}`)).default);
+                const command: Command = new ((await import(join(commandsPath, category, file))).default);
                 
                 cmds.push(command);
             }

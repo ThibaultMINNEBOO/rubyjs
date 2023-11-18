@@ -23,10 +23,10 @@ export abstract class Event {
 }
 
 export enum EventCategory {
-    MISC = "Misc",
-    CUSTOM = "Custom",
-    GUILD = "Guild",
-    INTERACTIONS = "Interactions",
-    MESSAGE = "Message",
-    REACTIONS = "Réactions"
+  MISC = "Misc",
+  CUSTOM = "Custom",
+  GUILD = "Guild",
+  INTERACTIONS = "Interactions",
+  MESSAGE = "Message",
+  REACTIONS = "Réactions",
 }

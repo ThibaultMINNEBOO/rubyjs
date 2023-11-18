@@ -18,7 +18,7 @@ export class CustomClient extends Client {
         this._token = token;
         this._loadingSettings = loadingSettings;
         this._commands = CommandHandler.loadCommands(this._loadingSettings.commandsPath);
-        this._db = Database.start();
+        this._db = Database.get();
     }
 
     public get commands(): ClientCommands {

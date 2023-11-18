@@ -1,7 +1,8 @@
-import { readdirSync } from "fs";
+import { readdirSync, writeFileSync } from "fs";
 import { CustomClient } from "./CustomClient";
-import { sep } from "path";
+import { join } from "path";
 import { Event } from "./Event";
+import Logger from "../utils/Logger";
 
 export class EventHandler {
     private _client: CustomClient;
@@ -12,10 +13,10 @@ export class EventHandler {
 
     public loadEvents() {
         readdirSync(this._client.loadingSettings.eventsPath).map(async (category: string) => {
-            const events = readdirSync(`${this._client.loadingSettings.eventsPath}${sep}${category}${sep}`).filter((files: string) => files.endsWith('.js'));
+            const events = readdirSync(join(this._client.loadingSettings.eventsPath, category)).filter((files: string) => files.endsWith('.js'));
 
             for (const file of events) {
-                const event: Event = new ((await import(`${this._client.loadingSettings.eventsPath}${sep}${category}${sep}${file}`)).default);
+                const event: Event = new ((await import(join(this._client.loadingSettings.eventsPath, category, file))).default);
 
                 if (event.options.once) {
                     this._client.once(event.name, event.run.bind(null, this._client));
@@ -23,7 +24,8 @@ export class EventHandler {
                     this._client.on(event.name, event.run.bind(null, this._client));
                 }
 
-                console.log(`[SYSTEM] - Evénement ${event.name} de la catégorie "${event.options.category.toUpperCase()}" chargée avec succès.`);
+                const message = `Event ${event.name} loaded successfuly.`;
+                Logger.success('system', message);
             }
         });
     }
