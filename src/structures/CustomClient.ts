@@ -4,6 +4,7 @@ import { CommandHandler } from "./CommandHandler";
 import { EventHandler } from "./EventHandler";
 import { Sequelize } from 'sequelize';
 import { Database } from "./Database";
+import Logger from "../utils/Logger";
 
 export class CustomClient extends Client {
     private _token: string;
@@ -35,7 +36,7 @@ export class CustomClient extends Client {
 
     public launch(): void {
         this.login(this._token).then(() => {
-            console.log(`[SYSTEM] - Logged as ${this.user.username}`);
+            Logger.success('system', `Logged as ${this.user.username}`);
             this.registerCommands();
             const eventHandler = new EventHandler(this);
             eventHandler.loadEvents();
@@ -48,7 +49,7 @@ export class CustomClient extends Client {
 
         this.guilds.cache.forEach((guild: Guild) => {
             rest.put(Routes.applicationGuildCommands(this.user.id, guild.id), { body: cmds }).then(() => {
-                console.log(`[SYSTEM] - Slash commands (/) are enabled on ${guild.name}.`);
+                Logger.success('system', `Slash commands (/) are enabled on ${guild.name}.`);
             });
         });
     }

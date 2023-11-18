@@ -2,6 +2,7 @@ import { readdirSync } from "fs";
 import { join } from "path";
 import { ClientCommands } from "../../types/Client";
 import { Command } from "./Command";
+import Logger from "../utils/Logger";
 
 export class CommandHandler {
     public static loadCommands(commandsPath: string) {
@@ -13,6 +14,7 @@ export class CommandHandler {
                 const command: Command = new ((await import(join(commandsPath, category, file))).default);
                 
                 cmds.push(command);
+                Logger.success('system', `Command ${command.metadata.name} added successfuly`);
             }
         });
 

@@ -1,6 +1,7 @@
 import { ActivityType } from "discord.js";
 import { CustomClient } from "../../structures/CustomClient";
 import { Event, EventCategory } from "../../structures/Event";
+
 export default class ReadyEvent extends Event {
     public constructor() {
         super('ready', {
