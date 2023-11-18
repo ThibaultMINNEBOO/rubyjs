@@ -9,10 +9,10 @@ export class Database {
     if (this.instance) return this.instance;
 
     return new Sequelize({
-      host: process.env.MARIADB_HOST,
-      username: process.env.MARIADB_USERNAME,
-      password: process.env.MARIADB_PASSWORD,
-      database: process.env.MARIADB_DATABASE,
+      host: process.env.DB_HOST,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       dialect: process.env.DB_SERVICE as Dialect,
     });
   }
