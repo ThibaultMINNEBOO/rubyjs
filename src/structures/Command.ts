@@ -1,4 +1,5 @@
 import { ApplicationCommandData, CommandInteraction } from "discord.js";
+import { CustomClient } from "./CustomClient";
 
 export abstract class Command {
     private _metadata: ApplicationCommandData;
@@ -11,5 +12,5 @@ export abstract class Command {
         return this._metadata;
     }
 
-    public abstract run(interaction: CommandInteraction);
+    public abstract run(client: CustomClient, interaction: CommandInteraction);
 }

@@ -17,7 +17,7 @@ export default class InteractionCreateEvent extends Event {
                 return c.metadata.name === interaction.commandName
             });
             
-            cmd.run(interaction);
+            cmd.run(client, interaction);
         }
     }
 }
